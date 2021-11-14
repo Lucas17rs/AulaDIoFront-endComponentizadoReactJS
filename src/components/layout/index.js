@@ -3,12 +3,9 @@ import React, { Children } from "react";
 function Layout ({children}) {
     return(
         <section>
-            <header>header</header>
+            <header>Bom Dia</header>
             {children}
-
         </section>
     )
-    
 }
-
-export default Layout
+export default Layout;
