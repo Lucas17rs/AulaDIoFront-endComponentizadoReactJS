@@ -13,7 +13,13 @@ const Profile = () => {
             <h1>um nome</h1>
             <S.WrapperUserName>
               <h3>Username: </h3>
-              <span>EU</span>
+              <a
+                href="https://github.com/Lucas17rs"
+                target="_blank"
+                rel="noreferrer"
+                >
+                  EU
+                </a>
             </S.WrapperUserName>
           </div>
           <S.WrapperStatusCont>
