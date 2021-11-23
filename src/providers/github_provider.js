@@ -1,19 +1,19 @@
 import React,{createContext, useCallback, useState} from "react";
-import { children } from "react";
 import api from "../services/api";
 
 export const GithubContext = createContext({
     user: {},
     repositores: [],
     starred: [],
-    lading: false
-})
+    loading: false
+});
 
 const GithubProvider = ({children}) =>
 {
-    const [githubState, setgithubState] = useState ({
-        lading: false,
-        user: {
+    const [githubState, setGithubState] = useState ({
+        hasUser: false,
+        loading: false,
+                user: {
             avatar_url: undefined,
             login: undefined,
             name: undefined,
@@ -22,30 +22,47 @@ const GithubProvider = ({children}) =>
             following: 0,
             public_repos: 0,
             public_gists: 0,
+            company: undefined,
         },
         repositores: [],
-        starred: []
+        starred: [],
     });
 
     const getUser = (username) => {
-        api.get('users/${username}').then(({data:{ user }}) =>{
-            setgithubState(prevState => ({
-                ...prevState,user:{
-                    user: {
-                        avatar_url: user.avatar_url,
-                        login: user.login,
-                        name: user.name,
-                        html_url: user.html_url,
-                        followers: user.ollowers,
-                        following: user.following,
-                        public_repos: user.public_repos,
-                        public_gists: user.public_gists,
-                    },
-                } 
-            }))
+        setGithubState((prevState) => ({
+            ...prevState,
+            loading: !prevState.loading,
+        }));
+        api
+            .get(`users/${username}`)
+            .then(({ data }) => 
+            {
+                console.log(data);
+                setGithubState((prevState) => ({
+                    ...prevState,
+                        hasUser:true,
+                        user: {
+                            avatar_url: data.avatar_url,
+                            login: data.login,
+                            name: data.name,
+                            html_url: data.html_url,
+                            followers: data.followers,
+                            following: data.following,
+                            public_repos: data.public_repos,
+                            public_gists: data.public_gists,
+                            company: data.company,
+                        },
+            }));
 
         })
-    }
+        .finally(() => {
+            setGithubState((prevState) => ({
+              ...prevState,
+              loading: !prevState.loading,
+            }));
+          });
+
+    };
 
     const contextValue ={
         githubState,

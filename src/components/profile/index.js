@@ -26,7 +26,13 @@ const Profile = () =>
                   {githubState.user.login}
                 </a>
             </S.WrapperUserName>
+            <S.WrapperUserGeneric>
+              <h3>Company:</h3>
+              <span>{githubState.user.company}</span>
+            </S.WrapperUserGeneric>
+
           </div>
+
           <S.WrapperStatusCont>
             <div>
               <h4>Followers</h4>

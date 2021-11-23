@@ -26,6 +26,19 @@ export const WrapperUserName = styled.div`
     color: blue;
   }
 `;
+export const WrapperUserGeneric = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top 5px;
+  h3{
+    margin-right: 5px;
+  }
+  a{
+    font-size: 130%;
+    font-weight: blod;
+    color: blue;
+  }
+`;
 
 export const WrapperInfoUser = styled.div`
   display: flex;
