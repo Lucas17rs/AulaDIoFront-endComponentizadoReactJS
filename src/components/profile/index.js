@@ -54,7 +54,7 @@ const Profile = () =>
           </S.WrapperStatusCont>
         </S.WrapperInfoUser>
       </S.Wrapper>
-    )
-}
+    );
+};
 
 export default Profile;
